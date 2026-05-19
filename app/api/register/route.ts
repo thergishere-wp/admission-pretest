@@ -3,9 +3,10 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
 import { v4 as uuidv4 } from 'uuid'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const body = await req.json()
     const { session_id, full_name, email, phone, gender, country, admission_number } = body
